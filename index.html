@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chromatic Fixed Point Theory and Topology in Aviation</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="vendor/reveal/reset.css">
+<link rel="stylesheet" href="vendor/reveal/reveal.css">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+
+<!-- 1 -->
+<section data-pdf="0" class="title-slide">
+  <div class="tgrid">
+    <div class="tleft">
+      <div class="eyebrow">My research and work</div>
+      <h1>Chromatic fixed point theory and topology in aviation</h1>
+      <div class="who">
+        <div class="nm">Christopher J. R. Lloyd, PhD</div>
+        <div class="rl">Operations Research Analyst, Federal Aviation Administration</div>
+        <div class="rl">Algebraic topologist · PhD, University of Virginia, 2021</div>
+      </div>
+      <div class="contact">
+        <a href="https://cjrl.github.io/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>cjrl.github.io</span></a>
+        <a href="https://github.com/cjrl" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>github.com/cjrl</span></a>
+        <a href="https://www.linkedin.com/in/christopher-jr-lloyd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a>
+        <a href="https://scholar.google.com/citations?user=CLp1A6EAAAAJ" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3L1 9l11 6 9-4.9V17h2V9L12 3zm-6 9.2v4c0 1.7 2.7 3.8 6 3.8s6-2.1 6-3.8v-4l-6 3.3-6-3.3z"/></svg><span>Google Scholar</span></a>
+        <a href="https://cjrl.github.io/talk/talk.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h8l5 5v13H6z M14 3v5h5"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M9 14h7M9 17.5h7"/></svg><span>Slides (PDF)</span></a>
+      </div>
+    </div>
+    <div class="tright">
+      <div class="topic" data-goto="part1" role="link" tabindex="0" title="Go to Part 1"><div class="k tv">Part 1</div><b>Chromatic fixed point theory</b><span>Smith theory, Morava K-theory, and real Grassmannians</span></div>
+      <div class="topic" data-goto="part2" role="link" tabindex="0" title="Go to Part 2"><div class="k rt">Part 2</div><b>Topology in aviation</b><span>Detecting airborne holding in near real time</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section data-pdf="last" data-key="part1">
+  <div class="statement" style="top:150px">I am a classically trained <span class="sg">algebraic</span> <span class="rt">topologist</span>.</div>
+  <div class="fragment s2bar" data-fragment-index="1" style="position:absolute;left:90px;top:410px"></div>
+  <p class="fragment s2line" data-fragment-index="1" style="position:absolute;left:90px;top:440px;max-width:25em">I have been working at the <b>FAA</b> for <b>5 years</b> as an <b>Operations Research Analyst / Mathematician</b> in the <b>Performance Analysis</b> group.</p>
+</section>
+
+<!-- 3 -->
+<section data-pdf="0,last" class="scene" data-scene="morph">
+  <div class="abs stitle"><div class="eyebrow">Algebraic <b class="rt">Topology</b></div><h2>The study of shapes under continuous deformation</h2></div>
+  <div class="abs bigcap" style="left:56px;top:190px;width:430px">Stretch and bend, but never tear or glue.</div>
+  <div class="abs bigcap" style="left:56px;top:330px;width:430px" data-show-from="1">Take a donut. Push down to form the cup.</div>
+  <div class="abs bigcap" style="left:56px;top:440px;width:430px" data-show-from="2">Then bend the rest around to make the handle.</div>
+  <div class="abs bigcap tv" style="left:56px;top:560px;width:430px;color:var(--sign)" data-show-from="3">Both have exactly one hole.</div>
+  <div class="abs ia bar" style="left:56px;bottom:28px"><span class="small">donut</span><input class="morph js-morph" type="range" min="0" max="100" value="0" aria-label="Donut to cup"><span class="small">cup</span><button class="btn ghost js-play" type="button">Play</button></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 4 -->
+<section data-pdf="last" class="scene" data-scene="invariants">
+  <div class="abs stitle"><div class="eyebrow"><b class="sg">Algebraic</b> Topology</div><h2>Attach an algebraic gadget to each space</h2><p style="max-width:44em;line-height:1.45">A number, a group, a vector space: something that tells spaces apart.<br><span style="color:var(--ink)">For example, homology attaches a vector space that counts holes.</span></p></div>
+  <div class="abs txt center" style="left:90px;width:400px;top:622px;font-size:25px;color:var(--rot)" data-show-from="1">this loop shrinks to a point</div>
+  <div class="abs txt center" style="left:790px;width:400px;top:622px;font-size:25px;color:var(--rot)" data-show-from="1">this loop cannot shrink</div>
+  <div class="abs center" style="left:90px;width:400px;top:660px;font-family:var(--serif);font-size:34px" data-show-from="2">dim H<sub>1</sub>(S<sup>2</sup>) = 0</div>
+  <div class="abs center" style="left:790px;width:400px;top:660px;font-family:var(--serif);font-size:34px" data-show-from="2">dim H<sub>1</sub>(T<sup>2</sup>) = 2</div>
+  <div class="abs center" style="left:480px;width:320px;top:290px;font-family:var(--serif);font-size:30px;line-height:1.2;color:var(--mix)" data-show-from="3">Different gadgets, so different spaces.</div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- primer -->
+<section data-pdf="last">
+  <div class="eyebrow">Homology</div>
+  <h2>A primer on mod 2</h2>
+  <div class="two" style="margin-top:22px;max-width:1120px;align-items:center;grid-template-columns:1.25fr 1fr;gap:56px">
+    <div>
+      <p style="font-size:1.02em">Mod 2 arithmetic, written $\mathbb F_2$, has just two numbers, <b class="tv">0</b> and <b class="tv">1</b>, with one rule: <span class="rt" style="white-space:nowrap">$1+1=0$</span>.</p>
+      <p class="small" style="margin-top:10px;font-size:0.7em">In logic terms: addition is XOR and multiplication is AND.</p>
+      <p class="fragment" data-fragment-index="1" style="margin-top:26px">We can do <b>linear algebra</b> over $\mathbb F_2$: vectors and matrices are built from 0s and 1s, and we add and multiply them with these two tables.</p>
+      <p class="fragment" data-fragment-index="2" style="margin-top:18px">In this talk we will work mod 2. Homology will be <b>mod 2 homology</b>.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+      <div style="display:flex;gap:34px;align-items:flex-start">
+        <table class="tab f2"><tr><th>+</th><th>0</th><th>1</th></tr><tr><th>0</th><td>0</td><td>1</td></tr><tr><th>1</th><td>1</td><td class="rt"><b>0</b></td></tr></table>
+        <table class="tab f2"><tr><th>×</th><th>0</th><th>1</th></tr><tr><th>0</th><td>0</td><td>0</td></tr><tr><th>1</th><td>0</td><td>1</td></tr></table>
+      </div>
+      <div class="fragment" data-fragment-index="2">
+        <div style="display:flex;align-items:center;gap:26px;font-size:1.1em">$$\begin{pmatrix}1&0&1&1\\0&1&1&0\\1&1&0&1\end{pmatrix}$$<span style="font-size:1.5em;color:var(--muted)">$\iff$</span><svg viewBox="-2 -2 140 106" style="width:144px;height:auto" role="img" aria-label="The same matrix drawn with filled cells for 1 and blank cells for 0"><g style="stroke:var(--muted)" stroke-width="1" opacity=".6"><line x1="0" y1="0" x2="136" y2="0"/><line x1="0" y1="34" x2="136" y2="34"/><line x1="0" y1="68" x2="136" y2="68"/><line x1="0" y1="102" x2="136" y2="102"/><line x1="0" y1="0" x2="0" y2="102"/><line x1="34" y1="0" x2="34" y2="102"/><line x1="68" y1="0" x2="68" y2="102"/><line x1="102" y1="0" x2="102" y2="102"/><line x1="136" y1="0" x2="136" y2="102"/></g><rect x="3" y="3" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="71" y="3" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="105" y="3" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="37" y="37" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="71" y="37" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="3" y="71" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="37" y="71" width="28" height="28" rx="3" style="fill:var(--ink)"/><rect x="105" y="71" width="28" height="28" rx="3" style="fill:var(--ink)"/></svg></div>
+        <p class="small" style="margin-top:6px">A matrix over $\mathbb F_2$, and the same matrix drawn: a filled cell is 1, a blank cell is 0.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section data-pdf="0,1,2,3,4" class="scene" data-scene="holes">
+  <div class="abs stitle"><div class="eyebrow">Homology</div><h2>Homology studies n-dimensional holes</h2><p>dim H<sub>n</sub>(X) counts the n-dimensional holes of X.</p></div>
+  <div class="abs ia chips" style="left:56px;top:170px"><button class="chip js-shape" data-shape="circle" type="button">Circle</button><button class="chip js-shape" data-shape="sphere" type="button">Sphere</button><button class="chip js-shape" data-shape="torus" type="button">Torus</button><button class="chip js-shape" data-shape="two" type="button">Two circles</button><button class="chip js-shape" data-shape="disk" type="button">Disk</button></div>
+  <div class="abs ia" style="right:56px;top:230px">
+    <button class="hrow h0 js-h0" type="button"><span class="hn">dim H₀(X)</span><span class="eqs">=</span><span class="v"></span><span class="hd">pieces</span></button>
+    <button class="hrow h1 js-h1" type="button"><span class="hn">dim H₁(X)</span><span class="eqs">=</span><span class="v"></span><span class="hd">loops</span></button>
+    <button class="hrow h2 js-h2" type="button"><span class="hn">dim H₂(X)</span><span class="eqs">=</span><span class="v"></span><span class="hd">voids</span></button>
+    <p class="note js-hnote" style="margin:12px 0 0;max-width:400px;min-height:44px"></p>
+  </div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 6a -->
+<section data-pdf="4,last">
+  <div class="eyebrow">Homology</div>
+  <h2>Homology = cycles modulo boundaries</h2>
+  <div class="defs four">
+    <div class="box fragment" data-fragment-index="1">
+      <h3 class="tv">Chain</h3>
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <g style="stroke:var(--rule)" stroke-width="3"><line x1="40" y1="95" x2="110" y2="35"/><line x1="40" y1="95" x2="150" y2="95"/><line x1="110" y1="35" x2="150" y2="95"/><line x1="150" y1="95" x2="230" y2="45"/><line x1="110" y1="35" x2="230" y2="45"/><line x1="150" y1="95" x2="265" y2="100"/><line x1="230" y1="45" x2="265" y2="100"/></g>
+        <g style="stroke:var(--rot)" stroke-width="6" stroke-linecap="round"><line x1="40" y1="95" x2="110" y2="35"/><line x1="110" y1="35" x2="150" y2="95"/><line x1="150" y1="95" x2="265" y2="100"/></g>
+        <g style="fill:var(--ink)"><circle cx="40" cy="95" r="7"/><circle cx="110" cy="35" r="7"/><circle cx="150" cy="95" r="7"/><circle cx="230" cy="45" r="7"/><circle cx="265" cy="100" r="7"/></g>
+      </svg>
+      <p>A <b class="nb">$k$-chain</b> is a formal sum of <span class="nb">$k$-dimensional</span> pieces: points, edges, faces for $k=0,1,2$.</p>
+      <p class="small">Mod 2: each piece is in the sum or not. These sums form $C_k$.</p>
+    </div>
+    <div class="box fragment" data-fragment-index="2">
+      <h3 class="tv">Cycle</h3>
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <path d="M20 84 C45 30 85 30 110 70" fill="none" style="stroke:var(--muted)" stroke-width="5" stroke-linecap="round"/><circle cx="20" cy="84" r="8" style="fill:var(--mix)"/><circle cx="110" cy="70" r="8" style="fill:var(--mix)"/>
+        <ellipse cx="220" cy="62" rx="52" ry="38" fill="none" style="stroke:var(--rot)" stroke-width="5"/>
+      </svg>
+      <p>A <b>cycle</b> is a chain with no loose ends: $\partial c=0$.</p>
+      <p class="small">A path has two endpoints, so it is not a cycle.</p>
+    </div>
+    <div class="box fragment" data-fragment-index="3">
+      <h3 class="sg">Boundary</h3>
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <ellipse cx="150" cy="60" rx="70" ry="44" style="fill:var(--sign);opacity:.28"/><ellipse cx="150" cy="60" rx="70" ry="44" fill="none" style="stroke:var(--rot)" stroke-width="5"/>
+      </svg>
+      <p>A <b>boundary</b> is the edge of something one dimension higher: $c=\partial d$.</p>
+      <p class="small">Every boundary is a cycle: the edge of a disk has no edge.</p>
+    </div>
+    <div class="box fragment" data-fragment-index="4">
+      <h3 class="rt">Homology</h3>
+      <svg viewBox="0 0 300 120" aria-hidden="true">
+        <ellipse cx="85" cy="60" rx="48" ry="38" fill="none" style="stroke:var(--rot)" stroke-width="5"/><ellipse cx="215" cy="60" rx="48" ry="38" fill="none" style="stroke:var(--rot)" stroke-width="5"/>
+        <path d="M133 60 L167 60" style="stroke:var(--muted)" stroke-width="3" stroke-dasharray="3 6"/><text x="150" y="50" text-anchor="middle" style="fill:var(--muted);font:600 22px var(--serif)">~</text>
+      </svg>
+      <p>Cycles that are not boundaries, counting two as <b>the same</b> if they differ by a boundary.</p>
+      <p class="small">That counts the holes.</p>
+    </div>
+  </div>
+  <div class="chain fragment" data-fragment-index="5">$$\cdots\longrightarrow C_{k+1}\xrightarrow{\ \partial_{k+1}\ }C_k\xrightarrow{\ \partial_k\ }C_{k-1}\longrightarrow\cdots\qquad\partial_k\circ\partial_{k+1}=0$$</div>
+  <div class="chain fragment" data-fragment-index="6">$$H_k\;=\;\frac{\color{#0f7f86}\ker\partial_k}{\color{#b4690e}\operatorname{im}\partial_{k+1}}\qquad\text{(cycles modulo boundaries)}$$</div>
+  <div class="chain ex fragment" data-fragment-index="7">
+<svg viewBox="0 0 1050 98" role="img" aria-label="The boundary of an edge is its two endpoints; the boundary of a face is the sum of its four edges">
+      <defs><g id="dgrid" fill="none" style="stroke:var(--muted);opacity:.55" stroke-width="1"><line x1="0" y1="0" x2="54" y2="0"/><line x1="0" y1="0" x2="0" y2="54"/><line x1="0" y1="27" x2="54" y2="27"/><line x1="27" y1="0" x2="27" y2="54"/><line x1="0" y1="54" x2="54" y2="54"/><line x1="54" y1="0" x2="54" y2="54"/></g></defs>
+      <g font-family="STIX Two Text, serif" font-size="42" style="fill:var(--ink)" text-anchor="middle">
+        <text x="42" y="58">∂(</text>
+        <line x1="86" y1="44" x2="140" y2="44" style="stroke:var(--rot)" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="86" cy="44" r="9" style="fill:var(--mix)"/><circle cx="140" cy="44" r="9" style="fill:var(--mix)"/>
+        <text x="176" y="58">)</text>
+        <text x="216" y="56">=</text>
+        <circle cx="262" cy="44" r="10" style="fill:var(--mix)"/><text x="298" y="54" font-size="34">+</text><circle cx="334" cy="44" r="10" style="fill:var(--mix)"/>
+        <text x="113" y="93" font-size="19" font-family="Instrument Sans, sans-serif" style="fill:var(--muted)">an edge</text>
+        <text x="298" y="93" font-size="19" font-family="Instrument Sans, sans-serif" style="fill:var(--muted)">its two endpoints</text>
+
+        <text x="436" y="58">∂(</text>
+        <g transform="translate(484 17)"><rect width="54" height="54" style="fill:var(--sign);opacity:.38"/><use href="#dgrid"/></g>
+        <text x="570" y="58">)</text>
+        <text x="610" y="56">=</text>
+        <g transform="translate(646 17)"><use href="#dgrid"/><line x1="0" y1="0" x2="54" y2="0" style="stroke:var(--rot)" stroke-width="8" stroke-linecap="round"/></g><text x="726" y="54" font-size="34">+</text>
+        <g transform="translate(752 17)"><use href="#dgrid"/><line x1="54" y1="0" x2="54" y2="54" style="stroke:var(--rot)" stroke-width="8" stroke-linecap="round"/></g><text x="832" y="54" font-size="34">+</text>
+        <g transform="translate(858 17)"><use href="#dgrid"/><line x1="0" y1="54" x2="54" y2="54" style="stroke:var(--rot)" stroke-width="8" stroke-linecap="round"/></g><text x="938" y="54" font-size="34">+</text>
+        <g transform="translate(964 17)"><use href="#dgrid"/><line x1="0" y1="0" x2="0" y2="54" style="stroke:var(--rot)" stroke-width="8" stroke-linecap="round"/></g>
+        <text x="511" y="93" font-size="19" font-family="Instrument Sans, sans-serif" style="fill:var(--muted)">a face</text>
+        <text x="832" y="93" font-size="19" font-family="Instrument Sans, sans-serif" style="fill:var(--muted)">its four edges</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- 6c -->
+<section data-pdf="1,2,3,4,5,7,7@reduced,8,9,9@reduced,10,last" class="scene" data-scene="chains" data-mode="rank" data-n="6" data-m="4">
+  <div class="abs stitle"><div class="eyebrow">Homology</div><h2>The same computation, as linear algebra</h2><p>Cut the torus into cells. dim H<sub>k</sub> counts what survives after boundaries cancel.</p></div>
+  <div class="abs ia" style="right:56px;top:140px;width:490px">
+    <div class="seg js-dim"><button type="button" data-d="0"><i class="dd" style="background:var(--triv)"></i>Points</button><button type="button" data-d="1"><i class="dd" style="background:var(--rot)"></i>Edges</button><button type="button" data-d="2"><i class="dd" style="background:var(--sign)"></i>Faces</button></div>
+    <div class="countline js-count"></div>
+    <div class="js-status"></div>
+    <div class="strip js-strip ia" data-show-from="6">
+      <div class="cx">
+        <div class="cb"><b>C₂</b><small>𝔽₂<sup class="js-nf">24</sup></small></div><span class="ar">→</span>
+        <button class="mth js-th" data-w="d2" type="button" aria-label="Open the matrix of the boundary map from C2 to C1"><span class="lab">∂₂</span><canvas></canvas></button><span class="ar">→</span>
+        <div class="cb"><b>C₁</b><small>𝔽₂<sup class="js-ne">48</sup></small></div><span class="ar">→</span>
+        <button class="mth js-th" data-w="d1" type="button" aria-label="Open the matrix of the boundary map from C1 to C0"><span class="lab">∂₁</span><canvas></canvas></button><span class="ar">→</span>
+        <div class="cb"><b>C₀</b><small>𝔽₂<sup class="js-nv">24</sup></small></div>
+      </div>
+    </div>
+  </div>
+  <div class="abs bd js-bd" data-show-from="6"></div>
+  <div class="abs ia mzoom js-zoom" style="display:none"></div>
+  <div class="abs lines" data-show-from="0" data-show-until="1" style="right:56px;bottom:56px;width:470px;font-size:25px;line-height:1.25;font-family:var(--serif)"><b class="rt">Cellular homology:</b> for nice spaces we can pick a model built from cells, and then homology is something we can actually calculate.</div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 9a -->
+<section data-pdf="last" class="scene" data-scene="square">
+  <div class="abs stitle"><div class="eyebrow">Groups</div><h2>What is a group?</h2></div>
+  <div class="abs lines" style="left:56px;top:140px;width:600px">
+    <p>A <b>group</b> is a set $G$ with a way to multiply two elements so that</p>
+    <ul><li>multiplication is associative,</li><li>there is an identity $1$,</li><li>every element has an inverse.</li></ul>
+  </div>
+  <div class="abs lines" style="left:56px;top:370px;width:600px" data-show-from="1">
+    <p><b>Example.</b> $C_4=\{1,g,g^2,g^3\}$ with $g^4=1$. Here $g$ is a quarter turn of a square.</p>
+  </div>
+  <div class="abs quote" style="left:56px;top:520px;width:640px" data-show-from="2">“Groups are meant to act on things.”</div>
+  <div class="abs ia bar" style="right:56px;bottom:34px" data-show-from="1"><button class="btn ghost js-g" data-k="0" type="button">1</button><button class="btn ghost js-g" data-k="1" type="button">g</button><button class="btn ghost js-g" data-k="2" type="button">g²</button><button class="btn ghost js-g" data-k="3" type="button">g³</button><button class="btn js-apply" type="button">Apply g</button></div>
+  <div class="abs lines center" style="right:56px;top:150px;width:300px;font-size:24px" data-show-from="1"><span class="js-ro"></span></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 9b -->
+<section data-pdf="2,3" class="scene" data-scene="circleAct">
+  <div class="abs stitle"><div class="eyebrow">Group actions</div><h2>A group acting on a space</h2></div>
+  <div class="abs lines" style="left:56px;top:140px;width:560px">
+    <p>$G$ <b>acts</b> on a space $X$ when each $g\in G$ moves the points of $X$: $x\mapsto g\cdot x$.</p>
+  </div>
+  <div class="abs lines" style="left:56px;top:262px;width:560px" data-show-from="1">
+    <p>Two rules:</p>
+    <ul><li>doing nothing does nothing: $1\cdot x=x$,</li><li>moving twice is moving by the product: $(gh)\cdot x=g\cdot(h\cdot x)$.</li></ul>
+  </div>
+  <div class="abs lines" style="left:56px;top:470px;width:560px" data-show-from="2">
+    <p><b>Example.</b> $C_4$ acts on a circle by quarter turns. The <b>orbit</b> of a point is where it goes: $x,\ gx,\ g^2x,\ g^3x$.</p>
+  </div>
+  <div class="abs ia" style="right:56px;top:150px;width:420px"><div class="chips js-chips" style="margin-bottom:12px"></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 9c -->
+<section data-pdf="1,2" class="scene" data-scene="sphere" data-view="act" data-preset="0" data-plain="1" data-autoapply>
+  <div class="abs stitle"><div class="eyebrow">Group actions</div><h2>The same group acting on a sphere</h2><p>The same group can act on the same space in different ways: here are four actions of $C_4$ on the sphere.</p></div>
+  <div class="abs ia" style="right:56px;top:220px;width:520px"><div class="chips js-chips" style="margin-bottom:6px"></div><p class="note js-note" style="margin-top:14px"></p></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 8 -->
+<section data-pdf="1,2,3,4,5" class="scene" data-scene="sphere" data-view="fix" data-preset="0" data-plain="1" data-autoapply>
+  <div class="abs stitle"><div class="eyebrow">Fixed points</div><h2>The points that do not move</h2><p>$X^G=\{x\in X: gx=x\ \text{for all }g\in G\}$</p></div>
+  <div class="abs ia" style="right:56px;top:190px;width:520px"><p class="note" style="margin:0 0 12px">$G=C_4$ again, acting on the sphere in four different ways:</p><div class="chips js-chips" style="margin-bottom:6px"></div><p class="note js-note" style="margin-top:12px"></p>
+    <div class="fxbig js-fx"><div class="fxh js-fxh"></div><div class="fxd js-subnote"></div></div>
+    <div class="seg js-sub ia" style="margin-top:12px" data-show-from="5"><button type="button" data-v="g">Fixed by all of C₄</button><button type="button" data-v="g2">Fixed by only {1, g²}</button></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 8b -->
+<section data-pdf="last">
+  <div class="eyebrow">Smith theory</div>
+  <h2>Homology controls fixed points</h2>
+  <p style="font-size:0.95em;max-width:34em">If a 2-group $G$ acts on a nice space $X$, the fixed set $X^G$ cannot be arbitrary. Its mod 2 homology is controlled by the mod 2 homology of $X$.</p>
+  <div class="defs big" style="margin-top:60px;grid-template-columns:repeat(2,1fr);max-width:900px">
+    <div class="box fragment">
+      <h3 class="tv">Acyclic goes to acyclic</h3>
+      <p style="font-size:0.8em">$\tilde H_*(X)=0\ \Rightarrow\ \tilde H_*(X^G)=0$</p>
+      <p class="small"><b>Smith</b>, 1938 to 1941. If $X$ has the homology of a point, so does $X^G$. Next slide.</p>
+    </div>
+    <div class="box fragment">
+      <h3 class="sg">Size goes down</h3>
+      <p style="font-size:0.8em">$\dim H_*(X^G)\le\dim H_*(X)$</p>
+      <p class="small"><b>Floyd</b>, 1952. The fixed set has at most as much total homology.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8c -->
+<section data-pdf="3,4" class="scene" data-scene="diskAct">
+  <div class="abs stitle"><div class="eyebrow">Smith theory</div><h2>Smith's theorem for acyclic spaces</h2></div>
+  <div class="abs thm" style="left:56px;top:120px;width:670px"><span class="name">Smith, 1938 to 1941</span>
+    <div style="font-size:0.72em;line-height:1.3">A finite 2-group $G$ acts on a sufficiently nice space $X$. Then</div>
+    $$\tilde H_*(X)=0\quad\Longrightarrow\quad\tilde H_*(X^G)=0.$$
+    <div style="font-size:0.62em;line-height:1.3;color:var(--muted);font-family:var(--sans)">In particular $X^G\ne\emptyset$.</div>
+  </div>
+  <div class="abs lines" style="left:56px;top:430px;width:620px" data-show-from="1">
+    <p><b>Example.</b> $G=C_4$ acting on the disk $D^2$</p>
+    <p style="margin-top:4px">$\tilde H_*(D^2)=0$, so $X$ is acyclic.</p>
+  </div>
+  <div class="abs lines" style="left:56px;top:560px;width:620px" data-show-from="2">
+    <p class="tv">Fixed set: <span class="js-fixname"></span>, so $\tilde H_*(X^G)=0$.</p>
+  </div>
+  <div class="abs ia" style="right:56px;top:150px;width:420px"><div class="chips js-chips" style="margin-bottom:12px"></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 10b2 -->
+<section data-pdf="last">
+  <div class="eyebrow">My research, with Nicholas J. Kuhn</div>
+  <h2>Why a chromatic setting?</h2>
+  <p style="font-size:1.1em;max-width:30em">Algebraic topology always wants better, more refined invariants.</p>
+  <p class="small" style="font-size:0.78em;margin-top:6px">At the prime 2, the <b>Morava K-theories</b> $K(n)$ interpolate between rational homology and mod 2 homology.</p>
+  <div class="ladder">
+    <div class="rung r0 fragment" data-fragment-index="1"><div class="nm">$K(0)$</div><div class="ds">rational homology</div></div>
+    <div class="rung r1 fragment" data-fragment-index="2"><div class="nm">$K(1)$</div><div class="ds">related to K-theory of vector bundles</div></div>
+    <div class="rung r2 fragment" data-fragment-index="3"><div class="nm">$K(2),K(3),\dots$</div><div class="ds">everything in between</div></div>
+    <div class="rung r3 fragment" data-fragment-index="3"><div class="nm">$K(\infty)$</div><div class="ds">ordinary mod 2 homology</div></div>
+  </div>
+  <p class="fragment" data-fragment-index="4" style="font-size:0.85em;margin-top:18px">Each height sees at least as much as the one before: $k_0(X)\le k_1(X)\le\cdots\le k_\infty(X)$.</p>
+  <p class="fragment" data-fragment-index="5" style="font-size:0.78em;margin-top:8px;color:var(--muted)">Think of a prism splitting light into colours: each level shows a different layer of the same space. Hence <b>chromatic</b>.</p>
+</section>
+
+<!-- 10c -->
+<section data-pdf="last">
+  <div class="eyebrow">My research, with Nicholas J. Kuhn</div>
+  <h2>The chromatic setting</h2>
+  <p style="font-size:1.08em;max-width:38em">Smith theory lives at the top height, $n=\infty$. We can ask the same question at every height $K(n)$. Write $k_n(X)=\dim K(n)_*(X)$.</p>
+  <p class="fragment small" style="font-size:0.85em;margin-top:6px">Symmetry moves us between heights: the fixed points are seen at a lower height than the space. How far down?</p>
+  <div class="two even" style="margin-top:22px">
+    <div class="box fragment">
+      <div class="label">Chromatic Smith $(G,n,m)$</div>
+      <div style="font-size:1.1em">$\tilde K(m)_*(X)=0\ \Longrightarrow\ \tilde K(n)_*(X^G)=0$</div>
+    </div>
+    <div class="box fragment" style="margin-top:0">
+      <div class="label">Chromatic Floyd $(G,n,m)$</div>
+      <div style="font-size:1.1em">$k_m(X)\ \ge\ k_n(X^G)$</div>
+    </div>
+  </div>
+  <p class="fragment small" style="margin-top:20px;font-size:0.8em">For every sufficiently nice $G$-space $X$, with $G$ a finite 2-group. The height can only drop going to the fixed points: from $m$ down to $n$.</p>
+</section>
+
+<!-- 10d -->
+<section data-pdf="last">
+  <div class="eyebrow">My research, with Nicholas J. Kuhn</div>
+  <h2>Chromatic Smith implies chromatic Floyd</h2>
+  <div class="imp">
+    <div></div><div class="hd">Classical <span class="small">(mod 2 homology)</span></div><div class="hd">Chromatic <span class="small">(Morava K-theory)</span></div>
+    <div class="rl">Floyd $\Rightarrow$ Smith</div>
+    <div class="c fragment" data-fragment-index="1"><b class="tv">Known.</b> A short argument.</div>
+    <div class="c fragment" data-fragment-index="2"><b class="tv">Immediate</b> from the definitions.</div>
+    <div class="rl">Smith $\Rightarrow$ Floyd</div>
+    <div class="c fragment" data-fragment-index="4"><b class="rt">Now a consequence</b> of the chromatic theorem.</div>
+    <div class="c hot fragment" data-fragment-index="3"><span class="pill">Theorem, Kuhn–Lloyd</span> Chromatic Smith implies chromatic Floyd. The two are equivalent.</div>
+  </div>
+  <p class="fragment" data-fragment-index="5" style="font-size:0.82em;margin-top:22px;max-width:44em"><b>Idea.</b> If Floyd fails, take a space $X$ that violates it. Cut a summand out of $X^{\wedge k}$ using an idempotent in $\mathbb Z_{(2)}[\Sigma_k]$. That summand violates Smith. (An idea of J. Smith, used by Hopkins and Smith.)</p>
+  <div class="cite">N. J. Kuhn and C. J. R. Lloyd, <i>Chromatic fixed point theory and the Balmer spectrum for extraspecial 2-groups</i>, Amer. J. Math. <b>146</b> (2024), 769–812.</div>
+</section>
+
+<!-- 10c2 -->
+<section data-pdf="last">
+  <div class="eyebrow">My research, with Nicholas J. Kuhn</div>
+  <h2>The blue shift number</h2>
+  <div class="two even" style="gap:36px">
+    <div>
+      <div class="thm fragment" data-fragment-index="1"><span class="name">Blue shift number</span><div style="font-size:0.85em;line-height:1.35">$r_n(G)$ is the smallest $r$ such that for every sufficiently nice $G$-space $X$,</div>
+        $$\tilde K(n+r)_*(X)=0\ \Longrightarrow\ \tilde K(n)_*(X^G)=0.$$
+        <div style="font-size:0.78em;color:var(--muted);font-family:var(--sans)">It measures the drop in height from $X$ to its fixed points $X^G$.</div></div>
+      <p class="fragment quote" data-fragment-index="3" style="font-size:1.15em;margin-top:22px">Part of the game: determine the minimum drop in height.</p>
+      <div class="box fragment conj" data-fragment-index="5"><div class="label">Conjecture (Kuhn–Lloyd)</div>
+        <div style="font-size:0.66em;line-height:1.38">$r_n(G)=r_+(G)$ for every finite 2-group $G$ and height $n$. Here $r_+(G)$ is the length of the shortest chain $1=K_0\trianglelefteq K_1\trianglelefteq\cdots\trianglelefteq K_r=G$ with every quotient $K_i/K_{i-1}$ cyclic: the cyclic length of $G$. In particular, the drop does not depend on $n$.</div></div>
+    </div>
+    <div>
+      <svg class="fragment" data-fragment-index="2" viewBox="0 0 520 215" style="width:80%;height:auto" role="img" aria-label="A drop in height from K(n+r) to K(n)">
+        <line x1="40" y1="130" x2="490" y2="130" style="stroke:var(--rule)" stroke-width="3"/>
+        <g style="font:500 20px var(--serif);fill:var(--ink)" text-anchor="middle">
+          <circle cx="70" cy="130" r="9" style="fill:var(--rot)"/><text x="70" y="168">K(n)</text>
+          <circle cx="180" cy="130" r="7" style="fill:var(--muted)"/><text x="180" y="168">K(n+1)</text>
+          <circle cx="290" cy="130" r="7" style="fill:var(--muted)"/><text x="290" y="168">⋯</text>
+          <circle cx="440" cy="130" r="9" style="fill:var(--sign)"/><text x="440" y="168">K(n+r)</text>
+        </g>
+        <path d="M440 112 C 400 30, 110 30, 70 112" fill="none" style="stroke:var(--ink)" stroke-width="3.5"/>
+        <path d="M70 112 l-4 -16 m4 16 l14 -9" fill="none" style="stroke:var(--ink)" stroke-width="3.5" stroke-linecap="round"/>
+        <text x="255" y="30" text-anchor="middle" style="font:600 24px var(--serif);fill:var(--ink)">drop r</text>
+        <text x="440" y="198" text-anchor="middle" style="font:500 17px var(--sans);fill:var(--sign)">X acyclic</text>
+        <text x="70" y="198" text-anchor="middle" style="font:500 17px var(--sans);fill:var(--rot)">X<tspan dy="-6" style="font-size:12px">G</tspan><tspan dy="6"> acyclic</tspan></text>
+      </svg>
+      <div class="fragment" data-fragment-index="4" style="font-size:0.84em;line-height:1.45;margin-top:8px">
+        <div><b>Always</b> $0\le r_n(G)\le\log_2|G|$.</div>
+        <div><b>$C_2$ acting:</b> $r=1$ (Strickland; Balmer–Sanders).</div>
+        <div><b>Abelian $G$:</b> $r=\operatorname{rank}(G)$ (Barthel et al.).</div>
+        <div><b>Extraspecial 2-groups:</b> determined by Kuhn–Lloyd.</div>
+      </div>
+      <div class="box fragment resolved" data-fragment-index="6"><span class="pill">Resolved</span>
+        <div style="font-size:0.66em;line-height:1.38;margin-top:8px">OpenAI has posted a preprint proving it: $r_n(G)=r_+(G)$ for every finite 2-group and every height.<br><a href="https://github.com/openai/math/blob/main/preprints/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026.pdf" target="_blank" rel="noopener"><i>Cyclic length and chromatic fixed-point loss</i></a>, OpenAI Preprint #314, September 2026.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10e -->
+<section data-pdf="last">
+  <div class="eyebrow">My research</div>
+  <h2>Using the general theory</h2>
+  <p style="font-size:1.02em;max-width:34em">Now that we have this general theory, we can use it to calculate the Morava K-theory of spaces.</p>
+  <div class="defs" style="margin-top:10px">
+    <div class="box fragment" data-fragment-index="1">
+      <h3 class="sg">1. Blue shift lower bound</h3>
+      <p>If a cyclic 2-group $C$ acts on $X$, the blue shift bound gives $k_n(X)\ge k_{n-1}(X^C)$.</p>
+    </div>
+    <div class="box fragment" data-fragment-index="2">
+      <h3 class="tv">2. Spectral sequence upper bound</h3>
+      <p>The Atiyah–Hirzebruch spectral sequence gives $k_n(X)\le\dim H(X;Q_n)$, the Margolis homology of the $n$th Milnor operation $Q_n$.</p>
+    </div>
+    <div class="box fragment" data-fragment-index="3">
+      <h3 class="rt">3. They meet</h3>
+      <p>Then $k_n(X)$ is known exactly, and the spectral sequence collapses.</p>
+    </div>
+  </div>
+  <p class="fragment quote" data-fragment-index="4" style="font-size:0.95em;margin-top:14px;max-width:26em">I searched for group actions on real Grassmannians whose fixed points make the bounds meet.</p>
+  <p class="fragment" data-fragment-index="5" style="font-size:0.78em;margin-top:10px;max-width:42em">This was my dissertation. It computes $k_n(\mathrm{Gr}_d(\mathbb R^m))=\binom md$ for $m\le 2^{n+1}$, and $k_n(\mathrm{Gr}_2(\mathbb R^m))$ for all $m$.</p>
+  <p class="fragment" data-fragment-index="6" style="font-size:0.78em;margin-top:10px;max-width:50em">This involved writing <b>Python</b> and <b>GAP</b> code to search for these actions using representation theory.</p>
+  <div class="cite">C. J. R. Lloyd, <i>Applications of chromatic fixed point theory</i>, PhD thesis, University of Virginia, 2021.<br>N. J. Kuhn and C. J. R. Lloyd, <i>Computing the Morava K-theory of real Grassmannians using chromatic fixed point theory</i>, Algebr. Geom. Topol. <b>24</b> (2024), 919–950.</div>
+</section>
+
+<!-- 24 -->
+<section data-pdf="last">
+  <div class="eyebrow">Summary</div>
+  <h2>The story so far</h2>
+  <div class="tl">
+    <div class="tl-line"></div>
+    <div class="tn cl up fragment" data-fragment-index="1" style="left:-66px;width:270px"><div class="card"><div class="yr">1938–41</div><div class="nm">P. A. Smith</div><div class="ds">A 2-group acting on an acyclic space has acyclic fixed points.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn cl dn fragment" data-fragment-index="2" style="left:71px;width:270px"><div class="card"><div class="yr">1952</div><div class="nm">E. E. Floyd</div><div class="ds">Fixed points have no more homology. This gives Smith.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn ch up fragment" data-fragment-index="3" style="left:209px;width:270px"><div class="card"><div class="yr">1998</div><div class="nm">Hopkins–Smith</div><div class="ds">Morava K-theories cut stable homotopy into layers.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn ch dn fragment" data-fragment-index="4" style="left:346px;width:270px"><div class="card"><div class="yr">2017</div><div class="nm">Balmer–Sanders</div><div class="ds">Equivariant spectrum, and the question: how far must the height drop? Solved for $C_2$.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn ch up fragment" data-fragment-index="5" style="left:484px;width:270px"><div class="card"><div class="yr">2019</div><div class="nm">Barthel et al.</div><div class="ds">Abelian 2-groups: the drop is the rank of $G$.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn me dn fragment" data-fragment-index="6" style="left:621px;width:270px"><div class="card"><div class="yr">2020 · 2024</div><div class="nm">Kuhn–Lloyd</div><div class="ds">Chromatic Smith is equivalent to chromatic Floyd. Extraspecial 2-groups.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn me up fragment" data-fragment-index="7" style="left:759px;width:270px"><div class="card"><div class="yr">2021 · 2024</div><div class="nm">Lloyd; Kuhn–Lloyd</div><div class="ds">Group actions compute the Morava K-theory of real Grassmannians.</div></div><i class="stem"></i><i class="dot"></i></div>
+    <div class="tn ne dn fragment" data-fragment-index="8" style="left:896px;width:270px"><div class="card"><div class="yr">Sept. 2026</div><div class="nm">OpenAI preprint</div><div class="ds">The drop equals the cyclic length for every 2-group. Resolves our conjecture.</div></div><i class="stem"></i><i class="dot"></i></div>
+  </div>
+  <div class="tl-legend"><span class="cl">Classical</span><span class="ch">Chromatic foundations</span><span class="me">My work</span><span class="ne">New result</span></div>
+</section>
+
+
+<!-- 26 -->
+<section data-pdf="0" data-key="part2">
+  <div class="eyebrow">New section</div>
+  <div class="statement" style="top:210px">Topology in Aviation</div>
+  <p class="lede" style="position:absolute;left:96px;top:420px;font-size:1.5em">I bring my topological taste to work.</p>
+</section>
+
+<!-- 26b -->
+<section data-pdf="last">
+  <div class="eyebrow">Topology in Aviation</div>
+  <h2>The setting</h2>
+  <div class="setting">
+    <div class="steps">
+      <p class="fragment" data-fragment-index="1">The command center <b>balances demand and capacity</b> in the National Airspace System.</p>
+      <p class="fragment" data-fragment-index="2">The <b>COO</b> wanted the command center to be able to detect <b>airborne holding</b> in near real time.</p>
+      <p class="fragment" data-fragment-index="3">My group, the <b>product development group</b>, was tasked with building the tool.</p>
+      <p class="fragment quote" data-fragment-index="4">I built the entire tool from the ground up.</p>
+    </div>
+    <svg class="fragment seesaw" data-fragment-index="1" viewBox="0 0 440 330" role="img" aria-label="A seesaw balancing airplanes (demand) against a runway (capacity)">
+      <defs><path id="pl" d="M34 0L8 -7L-6 -36L-16 -36L-8 -6L-26 -5L-32 -16L-38 -16L-34 0L-38 16L-32 16L-26 5L-8 6L-16 36L-6 36L8 7Z"/></defs>
+      <path d="M220 238 L180 292 L260 292 Z" style="fill:var(--ink)"/>
+      <line x1="30" y1="238" x2="410" y2="238" style="stroke:var(--ink)" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="220" cy="238" r="11" style="fill:var(--panel);stroke:var(--ink)" stroke-width="5"/>
+      <g style="fill:var(--sign);stroke:var(--panel)" stroke-width="2.5">
+        <use href="#pl" transform="translate(66 200) scale(.62) rotate(-90)"/>
+        <use href="#pl" transform="translate(116 200) scale(.62) rotate(-90)"/>
+        <use href="#pl" transform="translate(166 200) scale(.62) rotate(-90)"/>
+        <use href="#pl" transform="translate(91 160) scale(.62) rotate(-90)"/>
+        <use href="#pl" transform="translate(141 160) scale(.62) rotate(-90)"/>
+      </g>
+      <rect x="262" y="214" width="146" height="22" rx="4" style="fill:var(--triv)"/>
+      <line x1="272" y1="225" x2="398" y2="225" style="stroke:var(--panel)" stroke-width="3" stroke-dasharray="14 10"/>
+      <g style="stroke:var(--triv)" stroke-width="3" stroke-linecap="round"><line x1="285" y1="196" x2="285" y2="208"/><line x1="335" y1="196" x2="335" y2="208"/><line x1="385" y1="196" x2="385" y2="208"/></g>
+      <g style="fill:var(--triv)"><use href="#pl" transform="translate(310 176) scale(.5)" style="opacity:.55"/></g>
+      <text x="115" y="318" text-anchor="middle" style="font:600 24px var(--serif);fill:var(--sign)">Demand</text>
+      <text x="335" y="318" text-anchor="middle" style="font:600 24px var(--serif);fill:var(--triv)">Capacity</text>
+    </svg>
+  </div>
+</section>
+
+<!-- 27 -->
+<section data-pdf="last" class="scene" data-scene="holding" data-mode="fly">
+  <div class="abs stitle"><div class="eyebrow">Topology in Aviation</div><h2>The problem: airborne holding</h2></div>
+  <div class="abs lines" style="left:56px;top:140px;width:560px">
+    <p>Air traffic control may <b>hold</b> an aircraft in a racetrack pattern over a fix while it waits for clearance.</p>
+  </div>
+  <div class="abs lines" style="left:56px;top:290px;width:560px" data-show-from="1"><p>The pattern: a straight leg to the fix, a turn, a leg back, a turn, and again.</p></div>
+  <div class="abs lines" style="left:56px;top:420px;width:560px" data-show-from="2"><p class="quote" style="font-size:1.15em">Problem: from the radar track alone, decide when an aircraft was holding.</p></div>
+  <div class="abs ia" style="left:56px;bottom:46px"><button class="btn ghost js-replay" type="button">Replay</button></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 28 -->
+<section data-pdf="0,1,2" class="scene" data-scene="holding" data-mode="radar">
+  <div class="abs stitle"><div class="eyebrow">Topology in Aviation</div><h2>How would we detect it?</h2></div>
+  <div class="abs lines" style="left:56px;top:140px;width:560px">
+    <p>A radar track is a list of timestamped positions.</p>
+  </div>
+  <div class="abs lines" style="left:56px;top:250px;width:560px" data-show-from="1"><p>We want a test that is quick and survives noise.</p></div>
+  <div class="abs lines" style="left:56px;top:360px;width:560px" data-show-from="2"><p class="quote" style="font-size:1.15em">Let's model it topologically.</p><p style="margin-top:8px;color:var(--muted)">Treat the track as a shape, and ask what shape it is.</p></div>
+  <div class="abs ia" style="right:56px;top:140px"><div class="chips js-chips"></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+
+<!-- 29 -->
+<section data-pdf="3,4,5" class="scene" data-scene="perturb">
+  <div class="abs stitle"><div class="eyebrow">Topology in Aviation</div><h2>Modeling the track topologically</h2></div>
+  <div class="abs thm" style="left:56px;top:112px;width:590px"><span class="name">Motivation: transversality (Thom, 1954)</span><div style="font-size:0.62em;line-height:1.3">A generic curve crosses itself only <b>transversely</b> (at a genuine angle, not touching along a tangent), and transverse crossings survive small pushoffs. Holding lies on top of itself, so it is not generic: its pushoff meetings come and go.</div></div>
+  <div class="abs lines" style="left:56px;top:272px;width:590px;line-height:1.3" data-show-from="1"><p><b class="tv">1.</b> Smooth the track into a linestring.</p></div>
+  <div class="abs lines" style="left:56px;top:326px;width:590px;line-height:1.3" data-show-from="2"><p><b class="rt">2.</b> Treat it as a curve in the plane. Is it an embedding? Airborne holding crosses itself.</p></div>
+  <div class="abs lines" style="left:56px;top:416px;width:590px;line-height:1.28;font-size:24px" data-show-from="3"><p><b class="sg">3.</b> Copy the curve and push it off by a constant distance. Count where the copy meets the original. Is the count stable as the distance changes?</p><p class="js-verdict" style="margin-top:6px;font-size:1.05em"></p></div>
+  <div class="cite" style="left:118px;top:664px;max-width:560px;font-size:0.4em">R. Thom, <i>Quelques propriétés globales des variétés différentiables</i>, Comment. Math. Helv. <b>28</b> (1954), 17–86. See also Guillemin–Pollack, <i>Differential Topology</i>, Ch. 2.</div>
+  <div class="abs ia" style="right:56px;top:118px"><div class="chips js-chips"></div></div>
+  <div class="abs ia" style="right:56px;top:160px;display:flex;gap:10px" data-show-from="3"><button class="btn ghost js-perturb" type="button">New pushoff</button><button class="btn ghost js-zoomout" type="button" style="display:none">Zoom out</button></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+
+<!-- impl -->
+<section data-pdf="last">
+  <div class="eyebrow">Topology in Aviation</div>
+  <h2>Implementation and validation</h2>
+  <p class="fragment" data-fragment-index="1" style="font-size:1.05em;margin-top:34px;max-width:30em"><b class="rt">Implementation.</b> The algorithm is written entirely in PostGIS, as spatial SQL.</p>
+  <p class="fragment" data-fragment-index="2" style="font-size:1.05em;margin-top:28px;max-width:30em"><b class="mx">Validation.</b> I validated the output against next day airborne holding reporting.</p>
+  <p class="fragment" data-fragment-index="3" style="font-size:1.05em;margin-top:28px;max-width:30em;color:var(--muted)">Each flight lands in one of three buckets: flagged by both, flagged only by the algorithm, or reported only.</p>
+</section>
+
+<!-- 30 -->
+<section data-pdf="last">
+  <div class="eyebrow">Topology in Aviation</div>
+  <h2>In production: the Near Real Time tool</h2>
+  <p style="font-size:1.25em;max-width:27em;margin-top:20px">I used this algorithm to detect airborne holding in near real time.</p>
+  <p class="fragment" data-fragment-index="1" style="font-size:1.1em;max-width:30em;margin-top:30px">Deployed into a production tool, the <b>Near Real Time tool</b>, used down at the command center.</p>
+  <p class="fragment" data-fragment-index="2" style="font-size:1.1em;max-width:30em;margin-top:30px">The tool also shows other delay metrics that we calculate, such as <b>surface delay</b> and <b>program delay</b>, across the entire <b>National Airspace System</b>.</p>
+</section>
+
+<!-- 30b -->
+<section data-pdf="0" class="close-slide">
+  <div class="close-inner">
+    <h1>Thank you!</h1>
+    <p class="lede">Questions?</p>
+  </div>
+</section>
+
+<!-- 25 -->
+<section data-pdf="0">
+  <div class="eyebrow">References</div>
+  <h2>References</h2>
+  <div class="refs">
+    <div>
+      <h3 class="tv">Classical fixed point theory</h3>
+      <p>P. A. Smith, <i>Transformations of finite period</i>, Ann. of Math. <b>39</b> (1938), 127–164.</p>
+      <p>P. A. Smith, <i>Fixed point theorems for periodic transformations</i>, Amer. J. Math. <b>63</b> (1941), 1–8.</p>
+      <p>E. E. Floyd, <i>On periodic maps and the Euler characteristics of associated spaces</i>, Trans. Amer. Math. Soc. <b>72</b> (1952), 138–147.</p>
+      <p>G. E. Bredon, <i>Introduction to compact transformation groups</i>, Academic Press, 1972.</p>
+      <h3 class="rt" style="margin-top:18px">Chromatic foundations</h3>
+      <p>M. J. Hopkins and J. H. Smith, <i>Nilpotence and stable homotopy theory II</i>, Ann. of Math. <b>148</b> (1998), 1–49.</p>
+      <p>N. P. Strickland, <i>Thick ideals of finite G-spectra</i>, unpublished notes, 2010.</p>
+      <p>P. Balmer and B. Sanders, <i>The spectrum of the equivariant stable homotopy category of a finite group</i>, Invent. Math. <b>208</b> (2017), 283–326.</p>
+      <p>T. Barthel, M. Hausmann, N. Naumann, T. Nikolaus, J. Noel, and N. Stapleton, <i>The Balmer spectrum of the equivariant homotopy category of a finite abelian group</i>, Invent. Math. <b>216</b> (2019), 215–240.</p>
+    </div>
+    <div>
+      <h3 class="sg">Kuhn–Lloyd and my work</h3>
+      <p>N. J. Kuhn and C. J. R. Lloyd, <i>Chromatic fixed point theory and the Balmer spectrum for extraspecial 2-groups</i>, Amer. J. Math. <b>146</b> (2024), 769–812. arXiv:2008.00330.</p>
+      <p>N. J. Kuhn and C. J. R. Lloyd, <i>Computing the Morava K-theory of real Grassmannians using chromatic fixed point theory</i>, Algebr. Geom. Topol. <b>24</b> (2024), 919–950. <a href="https://msp.org/agt/2024/24-2/agt-v24-n2-p07-s.pdf" target="_blank" rel="noopener">msp.org/agt/2024/24-2</a></p>
+      <p>C. J. R. Lloyd, <i>Applications of chromatic fixed point theory</i>, PhD thesis, University of Virginia, 2021. <a href="https://libraetd.lib.virginia.edu/public_view/h702q715z" target="_blank" rel="noopener">libraetd.lib.virginia.edu</a></p>
+      <h3 class="tv" style="margin-top:18px">Topology</h3>
+      <p>L. Euler, <i>Solutio problematis ad geometriam situs pertinentis</i>, Comment. Acad. Sci. Imp. Petropol. <b>8</b> (1736), 128–140.</p>
+      <p>H. Poincaré, <i>Analysis situs</i>, J. École Polytech. <b>1</b> (1895).</p>
+      <p>R. Thom, <i>Quelques propriétés globales des variétés différentiables</i>, Comment. Math. Helv. <b>28</b> (1954), 17–86.</p>
+      <p>V. Guillemin and A. Pollack, <i>Differential Topology</i>, Prentice-Hall, 1974.</p>
+      <h3 class="mx" style="margin-top:18px">Recent</h3>
+      <p>OpenAI, <i>Cyclic length and chromatic fixed-point loss</i>, OpenAI Preprint #314, 24 September 2026. <a href="https://github.com/openai/math/blob/main/preprints/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026/Cyclic-Length-and-Chromatic-Fixed-Point-Loss-September-24-2026.pdf" target="_blank" rel="noopener">github.com/openai/math</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 31 -->
+<section data-pdf="skip">
+  <div class="eyebrow">Technical notes</div>
+  <h2>How this talk was made</h2>
+  <div class="stack">
+    <div class="box fragment" data-fragment-index="1"><h3 class="tv">Slides</h3><p>The slides are <b>reveal.js</b>: plain HTML, CSS and JavaScript, bundled so the whole talk runs offline.</p></div>
+    <div class="box fragment" data-fragment-index="2"><h3 class="sg">Graphics</h3><p>Every animation is drawn on an <b>HTML canvas</b> by a small 3D renderer written just for this talk.</p></div>
+    <div class="box fragment" data-fragment-index="3" style="grid-column:1/-1"><h3 class="mx">Algorithms under the hood</h3><p>The homology on the torus is <a href="https://en.wikipedia.org/wiki/Gaussian_elimination" target="_blank" rel="noopener">row reduction</a> mod 2. The donut-to-cup morph is a <a href="https://en.wikipedia.org/wiki/Signed_distance_function" target="_blank" rel="noopener">signed distance function</a> turned into a mesh with <a href="https://en.wikipedia.org/wiki/Isosurface" target="_blank" rel="noopener">surface nets</a>. The airborne holding model is built from segment intersections and parallel curves.</p></div>
+  </div>
+  <p class="fragment quote" data-fragment-index="4" style="font-size:1.05em;margin-top:26px;max-width:30em">The interactive simulations were designed with Claude Code.</p>
+</section>
+
+<!-- backup -->
+<section data-pdf="0">
+  <div class="eyebrow">Backup</div>
+  <h2>Backup slides</h2>
+  <div class="defs" style="margin-top:34px">
+    <div class="box" data-goto="bk-bridges" role="link" tabindex="0" title="Go to this slide"><h3 class="tv">The bridges of Königsberg</h3><p class="small">Euler's first graph theory argument.</p></div>
+    <div class="box" data-goto="bk-euler" role="link" tabindex="0" title="Go to this slide"><h3 class="sg">The Euler characteristic</h3><p class="small">A signed count of cells, and why it is an invariant.</p></div>
+    <div class="box" data-goto="bk-torus" role="link" tabindex="0" title="Go to this slide"><h3 class="rt">Cycles and boundaries on a torus</h3><p class="small">A chain of edges: cycle or boundary?</p></div>
+    <div class="box" data-goto="bk-orbits" role="link" tabindex="0" title="Go to this slide"><h3 class="rt">Free orbits cancel</h3><p class="small">Floyd's congruence, from counting cells in orbits.</p></div>
+    <div class="box" data-goto="bk-floyd" role="link" tabindex="0" title="Go to this slide"><h3 class="mx">Floyd implies Smith</h3><p class="small">How the classical Smith theorem follows.</p></div>
+    <div class="box" data-goto="bk-smith-spheres" role="link" tabindex="0" title="Go to this slide"><h3 class="mx">Smith's theorem for spheres</h3><p class="small">The fixed set of a sphere is a sphere, with all four actions.</p></div>
+    <div class="box" data-goto="bk-rp" role="link" tabindex="0" title="Go to this slide"><h3 class="tv">Real projective spaces</h3><p class="small">Lines through the origin, and their cells.</p></div>
+    <div class="box" data-goto="bk-gr" role="link" tabindex="0" title="Go to this slide"><h3 class="sg">Real Grassmannians</h3><p class="small">Subspaces of a given dimension, and how many cells.</p></div>
+    <div class="box" data-goto="bk-ss" role="link" tabindex="0" title="Go to this slide"><h3 class="rt">Spectral sequences</h3><p class="small">Pages, differentials, and the degree of $Q_n$.</p></div>
+  </div>
+</section>
+
+<!-- bridges -->
+<section data-pdf="last" data-key="bk-bridges" class="scene" data-scene="bridges">
+  <div class="abs stitle"><div class="eyebrow">Backup · Euler</div><h2>The bridges of Königsberg</h2></div>
+  <div class="abs lines" style="right:56px;top:140px;width:530px"><div class="js-btext"></div></div>
+  <div class="abs ia" style="right:56px;bottom:56px;width:530px"><p class="note js-bst" style="margin:0 0 10px;min-height:44px"></p><button class="btn ghost js-reset" type="button">Reset</button></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- euler -->
+<section data-pdf="last" data-key="bk-euler">
+  <div class="eyebrow">Backup · Euler</div>
+  <h2>The Euler characteristic</h2>
+  <p style="font-size:0.95em;max-width:34em">A signed count of the cells of a space:</p><div style="font-size:0.8em;margin-top:2px">$$\chi(X)=\#\text{vertices}-\#\text{edges}+\#\text{faces}-\cdots$$</div>
+  <div class="two even" style="margin-top:6px;max-width:1080px">
+    <div>
+      <table class="tab"><tr><th></th><th>$V$</th><th>$E$</th><th>$F$</th><th>$V-E+F$</th></tr>
+        <tr><td>Tetrahedron</td><td>4</td><td>6</td><td>4</td><td><b>2</b></td></tr>
+        <tr><td>Cube</td><td>8</td><td>12</td><td>6</td><td><b>2</b></td></tr>
+        <tr><td>Torus, $6\times 4$ grid</td><td>24</td><td>48</td><td>24</td><td><b>0</b></td></tr></table>
+      <p class="small" style="margin-top:12px">Euler, 1750: every convex polyhedron has $V-E+F=2$.</p>
+    </div>
+    <div>
+      <div class="box fragment" data-fragment-index="1"><h3 class="rt">It only depends on the space</h3><p style="font-size:0.8em">Cut the space into cells in any way you like and you get the same number. It is built from homology (Poincaré, 1895):<br>$\chi(X)=\sum_k(-1)^k\dim H_k(X)$.</p></div>
+      <div class="box fragment" data-fragment-index="2" style="margin-top:14px"><h3 class="tv">Two examples</h3><p style="font-size:0.8em">Sphere: $1-0+1=2$. Torus: $1-2+1=0$.</p></div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="3" style="font-size:0.85em;margin-top:22px;max-width:40em"><b class="sg">Why it matters here.</b> It is a <i>count of cells</i>, so it behaves well when a group moves the cells around: a free orbit has size divisible by 2, so it disappears mod 2. That is the next slide.</p>
+  <p class="fragment" data-fragment-index="4" style="font-size:0.8em;margin-top:8px;color:var(--muted)">It also proves Smith's theorem for acyclic spaces: $\chi(X)=1$ forces $\chi(X^G)\equiv 1\pmod 2$, so $X^G\neq\emptyset$. See "Floyd implies Smith".</p>
+</section>
+
+<!-- torus backup -->
+<section data-pdf="1,2,3,4" data-key="bk-torus" class="scene" data-scene="chains">
+  <div class="abs stitle"><div class="eyebrow">Backup · Homology</div><h2>Cycles and boundaries on a torus</h2><p>A chain of edges. Is it a cycle? Is it a boundary?</p></div>
+  <div class="abs ia" style="right:56px;top:150px;width:470px">
+    <div class="seg js-mode" style="margin-bottom:12px"><button type="button" data-v="edge">Edges</button><button type="button" data-v="face">Faces</button></div>
+    <div class="chips" style="margin-bottom:14px"><button class="chip js-pre" data-p="path" type="button">Path</button><button class="chip js-pre" data-p="loop" type="button">Small loop</button><button class="chip js-pre" data-p="meridian" type="button">Around the tube</button><button class="chip js-pre" data-p="longitude" type="button">Around the hole</button><button class="chip js-pre" data-p="clear" type="button">Clear</button></div>
+    <div class="js-status"></div>
+  </div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 10 -->
+<section data-pdf="last" data-key="bk-orbits" class="scene" data-scene="cells" data-mode="orbits">
+  <div class="abs stitle"><div class="eyebrow">Backup · Floyd</div><h2>Free orbits cancel</h2></div>
+  <div class="abs" style="right:56px;top:130px;width:520px">
+    <div class="thm" data-show-from="3"><span class="name">Floyd, 1952</span>$$\begin{gathered}\dim H_*(X^G)\le\dim H_*(X)\\ \chi(X^G)\equiv\chi(X)\pmod 2\end{gathered}$$</div>
+  </div>
+  <div class="abs ia" style="right:56px;top:330px;width:520px"><div class="bar" style="margin-bottom:12px"><button class="btn js-apply" type="button">Apply g</button><button class="btn ghost js-reset" type="button">Reset</button></div><div class="js-panel"></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- 10b -->
+<section data-pdf="last" data-key="bk-floyd">
+  <div class="eyebrow">Backup · Smith theory</div>
+  <h2>Floyd implies Smith</h2>
+  <div class="two even">
+    <div>
+      <div class="thm"><span class="name">Floyd</span><div style="font-size:0.95em;line-height:1.5">(1) $\dim H_*(X^G)\le\dim H_*(X)$<br>(2) $\chi(X^G)\equiv\chi(X)\pmod 2$</div></div>
+      <div class="thm" style="border-color:var(--sign);margin-top:18px"><span class="name">Smith</span><div style="font-size:0.95em">$X$ acyclic $\Rightarrow$ $X^G$ acyclic</div></div>
+    </div>
+    <div style="font-size:0.95em;line-height:1.4">
+      <p>Let $X$ be acyclic: $H_*(X)=\mathbb F_2$, so $\chi(X)=1$.</p>
+      <p class="fragment" style="margin-top:10px"><b class="tv">Size.</b> By (1), $\dim H_*(X^G)\le 1$.</p>
+      <p class="fragment" style="margin-top:10px"><b class="rt">Euler characteristic.</b> By (2), $\chi(X^G)\equiv 1\pmod 2$, so $\chi(X^G)\ne 0$. Hence $X^G\ne\emptyset$ and $H_0(X^G)\ne 0$.</p>
+      <p class="fragment" style="margin-top:10px"><b class="sg">Conclusion.</b> $H_*(X^G)=\mathbb F_2$, concentrated in degree 0. So $X^G$ is acyclic. $\blacksquare$</p>
+    </div>
+  </div>
+  <p class="fragment lede" style="margin-top:1.4em;color:var(--ink);font-size:1.25em">Floyd is the stronger theorem: it works for every space, and it gives Smith for free.</p>
+</section>
+
+<!-- smith spheres (backup) -->
+<!-- 9 -->
+<section data-key="bk-smith-spheres" data-pdf="3,4,5,6,7" class="scene" data-scene="sphere" data-view="smith" data-preset="1" data-plain="1" data-autoapply>
+  <div class="abs stitle"><div class="eyebrow">Backup · Smith theory</div><h2>Smith's theorem for spheres</h2></div>
+  <div class="abs ia" style="right:56px;top:140px;width:560px"><div class="chips js-chips" style="margin-bottom:14px"></div>
+    <div class="bar" style="margin-bottom:18px"><div class="seg js-sub"><button type="button" data-v="g">Fixed by all of C₄</button><button type="button" data-v="g2">Fixed by only {1, g²}</button></div></div>
+    <div class="hline" data-show-from="1"><div class="js-HX"></div></div>
+    <div class="hline" data-show-from="2"><div class="js-HF"></div></div>
+    <div data-show-from="3" style="margin-top:18px"><div class="thm"><span class="name">Smith, 1938 to 1941</span>A 2-group acting on a sphere has a fixed set that is again a sphere, possibly $\emptyset$.</div><p class="note js-smith" style="margin-top:10px"></p></div>
+  </div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- rp -->
+<section data-pdf="last" data-key="bk-rp" class="scene" data-scene="rp">
+  <div class="abs stitle"><div class="eyebrow">Backup · Spaces</div><h2>Real projective spaces</h2></div>
+  <div class="abs lines" style="right:56px;top:140px;width:540px"><div class="js-rtext"></div></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+<!-- gr -->
+<section data-pdf="last" data-key="bk-gr">
+  <div class="eyebrow">Backup · Spaces</div>
+  <h2>Real Grassmannians</h2>
+  <p style="font-size:0.95em;max-width:36em">$\mathrm{Gr}_k(\mathbb R^n)$ is the space of all $k$-dimensional subspaces of $\mathbb R^n$.</p>
+  <div class="two even" style="margin-top:14px;max-width:1080px">
+    <div>
+      <table class="tab"><tr><th>Space</th><th>Dimension</th><th>Cells</th></tr>
+        <tr><td>$\mathrm{Gr}_1(\mathbb R^{n})=\mathbb{RP}^{n-1}$</td><td>$n-1$</td><td>$n$</td></tr>
+        <tr><td>$\mathrm{Gr}_2(\mathbb R^3)\cong\mathbb{RP}^2$</td><td>2</td><td>3</td></tr>
+        <tr><td>$\mathrm{Gr}_2(\mathbb R^4)$</td><td>4</td><td>6</td></tr>
+        <tr><td>$\mathrm{Gr}_2(\mathbb R^5)$</td><td>6</td><td>10</td></tr>
+        <tr><td>$\mathrm{Gr}_k(\mathbb R^n)$</td><td>$k(n-k)$</td><td>$\binom nk$</td></tr></table>
+      <p class="small" style="margin-top:12px">A plane in $\mathbb R^3$ is determined by the line perpendicular to it.</p>
+    </div>
+    <div>
+      <div class="box fragment" data-fragment-index="1"><h3 class="tv">Cells</h3><p style="font-size:0.8em">Row reduce a $k\times n$ matrix whose rows span the subspace. The positions of the leading 1s name a Schubert cell, and the free entries are its coordinates.</p></div>
+      <div class="box fragment" data-fragment-index="2" style="margin-top:14px"><h3 class="sg">Homology</h3><p style="font-size:0.8em">Mod 2, each cell contributes one class, so $\dim H_*(\mathrm{Gr}_k(\mathbb R^n))=\binom nk$.</p></div>
+    </div>
+  </div>
+  <p class="fragment" data-fragment-index="3" style="font-size:0.85em;margin-top:22px;max-width:42em"><b class="rt">Why it matters here.</b> A group acting through a representation of $G$ on $\mathbb R^n$ acts on every $\mathrm{Gr}_k(\mathbb R^n)$. The fixed points split into products of smaller Grassmannians.</p>
+</section>
+
+<!-- sseq -->
+<section data-pdf="1@1:3,1@1:end,2@2:3,2@2:end,3@3:3,3@3:end" data-key="bk-ss" class="scene" data-scene="sseq">
+  <div class="abs stitle"><div class="eyebrow">Backup · Algebra</div><h2>Spectral sequences</h2></div>
+  <div class="abs lines" style="left:56px;top:104px;width:600px;font-size:23px;line-height:1.26"><p>The Atiyah–Hirzebruch pages for $K(n)^*(\mathbb{RP}^m)$. We start at $E_2$: mod 2 cohomology in every $v_n$ row, which we know. Each page is the homology of the last.</p></div>
+  <div class="abs ia" style="right:56px;top:112px;width:560px"><div class="chips js-sschips"></div>
+    <div class="bar" style="margin-top:10px;gap:12px;align-items:center"><button class="btn js-ssplay" type="button">Play</button><input class="js-ssrange" type="range" min="2" max="6" step="1" value="2" aria-label="Page" style="flex:1;accent-color:var(--rot)"><span class="js-sspage" style="font-family:var(--serif);font-size:26px;min-width:56px"></span></div></div>
+  <div class="abs lines js-sstext" style="left:56px;top:236px;width:1168px;font-size:21px;line-height:1.3"></div>
+  <span class="fragment marker"></span><span class="fragment marker"></span><span class="fragment marker"></span>
+</section>
+
+
+
+
+
+
+
+
+
+</div></div>
+
+
+<button id="idxBtn" type="button" aria-label="Open the slide index (I)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor"/></svg><span>Index</span></button>
+<div id="rotateHint" hidden><span>Turn your phone sideways for the best view.</span><button type="button" aria-label="Dismiss">Got it</button></div>
+<div id="idx" hidden role="dialog" aria-label="Slide index"><div class="idx-head"><h2>Slides</h2><button id="idxClose" type="button">Close <kbd>Esc</kbd></button></div><div class="idx-grid" id="idxGrid"></div></div>
+
+<script src="vendor/reveal/reveal.js"></script>
+<script src="vendor/katex/katex.min.js"></script>
+<script src="vendor/katex/auto-render.min.js"></script>
+<script src="demos/lib.js"></script>
+<script src="deck.js"></script>
+
+<script>
+  window.initIndex = function () {
+    var btn = document.getElementById("idxBtn"), box = document.getElementById("idx"), grid = document.getElementById("idxGrid"), open = false;
+    function titleOf(sec) {
+      var el = sec.querySelector("h1, h2, .statement"); if (!el) return "Untitled";
+      var c = el.cloneNode(true); c.querySelectorAll(".katex-mathml").forEach(function (n) { n.remove(); });
+      return c.textContent.replace(/\s+/g, " ").trim();
+    }
+    function build() {
+      var secs = Array.prototype.slice.call(document.querySelectorAll(".reveal .slides > section")), cur = deck.getIndices().h;
+      grid.innerHTML = "";
+      secs.forEach(function (sec, i) {
+        var b = document.createElement("button"), ey = sec.querySelector(".eyebrow"); b.type = "button"; b.className = "idx-card" + (i === cur ? " cur" : "");
+        b.innerHTML = "<span class='n'>" + (i + 1) + "</span><span class='e'></span><b></b>";
+        b.querySelector("b").textContent = titleOf(sec); b.querySelector(".e").textContent = ey ? ey.textContent.trim() : "";
+        b.onclick = function () { close(); deck.slide(i); };
+        grid.appendChild(b);
+      });
+    }
+    function show() { build(); box.hidden = false; open = true; deck.configure({ keyboard: false }); var c = grid.querySelector(".cur"); if (c) c.scrollIntoView({ block: "center" }); }
+    function close() { box.hidden = true; open = false; deck.configure({ keyboard: true }); }
+    btn.onclick = function () { open ? close() : show(); };
+    document.getElementById("idxClose").onclick = close;
+    document.addEventListener("keydown", function (e) {
+      if (open && e.key === "Escape") { e.preventDefault(); close(); }
+      else if (!open && (e.key === "i" || e.key === "I") && !e.metaKey && !e.ctrlKey && !e.altKey) { show(); }
+    });
+  };
+</script>
+
+<script>
+  (function () {
+    var el = document.getElementById("rotateHint"), mq = window.matchMedia("(orientation: portrait) and (max-width: 700px)"), gone = false;
+    function upd() { el.hidden = gone || !mq.matches; }
+    if (mq.addEventListener) mq.addEventListener("change", upd); else mq.addListener(upd);
+    el.querySelector("button").onclick = function () { gone = true; upd(); };
+    upd();
+  })();
+</script>
+<script>
+  window.deck = new Reveal({
+    width: 1280, height: 720, margin: 0.05, minScale: 0.2, maxScale: 2,
+    hash: true, slideNumber: "c/t", transition: "fade", transitionSpeed: "fast",
+    controls: true, progress: true, center: false, viewDistance: 2, mobileViewDistance: 1, keyboardCondition: null, scrollActivationWidth: null
+  });
+  window.deck.initialize().then(function () {
+    document.querySelectorAll("[data-goto]").forEach(function (el) {
+      var go = function () { var secs = Array.prototype.slice.call(document.querySelectorAll(".reveal .slides > section")), t = document.querySelector('.reveal .slides > section[data-key="' + el.dataset.goto + '"]'); if (t) window.deck.slide(secs.indexOf(t)); };
+      el.addEventListener("click", go);
+      el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.stopPropagation(); go(); } });
+    });
+    TalkBoot();
+    initIndex();
+    renderMathInElement(document.querySelector(".reveal"), {
+      delimiters: [{ left: "$$", right: "$$", display: true }, { left: "$", right: "$", display: false }],
+      throwOnError: false
+    });
+  });
+</script>
+</body>
+</html>
